@@ -7,6 +7,7 @@
 
 namespace app\assets;
 
+use app\services\UrlService;
 use yii\web\AssetBundle;
 
 /**
@@ -17,13 +18,26 @@ class AppAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
-    public $css = [
-        'css/site.css',
-    ];
-    public $js = [
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
+
+//    public $css = [
+//        '/bootstrap/css/bootstrap.min.css',
+//    ];
+//    public $js = [
+//        '/bootstrap/css/bootstrap.min.js',
+//        '/jquery/jquery.min.js',
+//    ];
+
+    public function registerAssetFiles( $view ){
+        $release = '20171213'; //加一个版本号,目的 ： 是浏览器获取最新的css 和 js 文件
+        $this->css = [
+            UrlService::buildUrl("/bootstrap/css/bootstrap.min.css",[ 'v' => $release ]),
+            UrlService::buildUrl( "/css/app.css")
+        ];
+        $this->js = [
+            UrlService::buildUrl("/bootstrap/js/bootstrap.min.js"),
+            UrlService::buildUrl("/jquery/jquery.min.js"),
+        ];
+        parent::registerAssetFiles($view);
+    }
+
 }

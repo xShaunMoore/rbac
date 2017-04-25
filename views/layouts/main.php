@@ -23,54 +23,61 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
+<!--导航条-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+<!--   反色导航条 "navbar navbar-inverse"   -->
+    <div class="container-fluid ">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">RBAC</a>
+        </div>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => 'My Company',
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#"> 首页 </a></li>
+            </ul>
+<!--            <p class="navbar-text navbar-right"> hi xxx <span></span></p>-->
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"> hi xxx </a></li>
+                <li><a href="#"></a></li>
 
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--左侧菜单栏-->
+<div class="container-fluid">
+    <div class="col-sm-2 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li>权限演示页面</li>
+            <li><a href="">测试页面一</a></li>
+            <li><a href="">测试页面二</a></li>
+            <li><a href="">测试页面三</a></li>
+            <li><a href="">测试页面四</a></li>
+            <li><a href="">测试页面五</a></li>
+            <li>系统设置</li>
+            <li><a href="">用户管理</a></li>
+            <li><a href="">角色管理</a></li>
+            <li><a href="">权限管理</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-10 col-sm-offset-2 col-md-10 col-md-offset-2 main">
+        <?=$content;?>
+        <hr>
+        <footer>
+            <p class="pull-left">@xShaunMoore</p>
+            <p class="pull-right">Power By xShaunMoore</p>
+        </footer>
     </div>
 </div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
